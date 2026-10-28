@@ -71,3 +71,8 @@ Simulação feita com `ferramentas/sim_compacta.py`, ao ar livre a 1 m. Potênci
 - **Duto:** tubo PVC de 75 mm, com cerca de 56 cm pela linha central e 3 curvas de 90°. Fica no plano a 45 mm da tampa traseira (cerca de 16 mm de folga para o ímã) e sai pela traseira.
 - A profundidade foi aumentada de 240 para 260 mm para o duto não encostar no ímã.
 - Desenho gerado por `ferramentas/desenho_caixa.py`.
+
+## Imagem 3D
+![Caixa 3D](projeto-bp8-caixa-3d.png)
+
+Gerada por `ferramentas/render3d/`.
