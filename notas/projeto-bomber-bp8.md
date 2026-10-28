@@ -44,3 +44,20 @@ Objetivo: caixa compacta, de boa qualidade, com grave o mais perto possível de 
 1. Confirmar Re e a tabela de caixa do manual oficial da Bomber (PDF 3.27.443-1.23.121).
 2. Conferir no WinISD.
 3. Construir o protótipo e medir a sintonia real (impedância ou microfone).
+
+## Opções COMPACTAS (prioridade: caixa pequena)
+
+Simulação feita com `ferramentas/sim_compacta.py`, ao ar livre a 1 m. Potência limitada pelo Xmax de 11 mm.
+
+| Opção | Volume líquido / bruto | F3 | SPL máx. em 35 Hz | SPL máx. em 60 Hz | Observação |
+|---|---|---|---|---|---|
+| Selada + DSP (Linkwitz, alvo F3 35 Hz) | 6 L / ~8 L | **35 Hz** | 98 dB | 101 dB | A menor; só usa ~45 W (limitada pela excursão); exige amplificador com DSP |
+| Dutada, Fb 40 Hz, duto 6 cm × 49 cm | 10 L / ~13 L | 42 Hz | 103 dB | 108 dB | Duto de 6 cm passa de 30 m/s no limite: precisa de pontas arredondadas |
+| Dutada, Fb 40 Hz, duto 7 cm × 67 cm | 10 L / ~14 L | 42 Hz | 103 dB | 108 dB | Mais silenciosa (15 m/s a 100 W); duto dobrado |
+| Dutada, Fb 38 Hz | 12 L / ~15 L | 38 Hz | 104 dB | 107 dB | |
+| Radiador passivo 8", Fb 36 Hz | 10 L | ~51 Hz | 101 dB | 106 dB | Dispensa duto, mas perde extensão; não compensa com este alto-falante |
+
+**Conclusões:**
+- **Abaixo de 10 L sem DSP**, não dá para ter F3 de 35 Hz ao ar livre com este alto-falante.
+- **No carro**, o ganho de cabine compensa: a dutada de 10 L (F3 42 Hz ao ar livre) deve chegar perto de 35 Hz dentro do veículo.
+- **Para produto doméstico ou portátil pequeno**, o caminho é a selada com DSP. É menor e mais grave, mas toca mais baixo (cerca de 5 dB a menos).
