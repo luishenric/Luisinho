@@ -99,3 +99,10 @@
   - Com o passa-altas de 100–120 Hz, a parte de cima ventilada não prejudica os JBL, que são triaxiais automotivos feitos para porta de carro.
 - **Bateria:** longe da saída de ar quente da fonte e do amplificador (Li-ion não gosta de calor acima de ~45 °C).
 - Tudo preso com parafuso e coxim de borracha (vibração do sub). Não cobrir a ventilação com espuma acústica; a espuma vai só atrás dos JBL.
+
+## Vista sem a tampa de cima
+![Sem tampa](projeto-compacto-sem-tampa.png)
+
+- Os JBL ficam na frente. Atrás deles, a fonte fica deitada no fundo e, por cima dela, o amplificador (à esquerda) e a bateria 3S8P (à direita).
+- O processador fica sobre a bateria. A placa do módulo BT/USB fica presa por baixo da tampa.
+- Os barramentos ficam na lateral esquerda e o fusível com a chave fica atrás, à direita.
