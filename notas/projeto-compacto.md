@@ -53,3 +53,18 @@
   - processador: 5 A;
   - módulo: 3 A.
 - **Cabos principais:** 16–25 mm².
+
+## Bateria montada com solda ponto (análise)
+- **ICR18650 2200 mAh (anúncio barato): NÃO usar.**
+  - É química de baixa descarga, cerca de 1–2C (≈ 2–4 A por célula).
+  - Para picos de 40–80 A do amplificador de 800 W seriam precisas de 10 a 20 células em paralelo.
+  - As células são de procedência duvidosa (código borrado).
+- **Li-ion em 3S** (11,1 V nominal, 12,6 V cheio) **não combina com a fonte em 14,2–14,4 V**: sobrecarrega e há risco de incêndio. Só serviria com a fonte travada em 12,6 V.
+- **Recomendado: LiFePO4 32700 (3,2 V, ~6 Ah) em 4S3P.**
+  - 12,8 V nominal e 14,6 V cheio, o que é compatível com som automotivo e com a fonte em 14,2–14,4 V.
+  - 12 células, ≈ 18 Ah e ≈ 230 Wh.
+  - Tamanho de ≈ 13 × 10 × 7,5 cm e peso de ≈ 1,8 kg.
+  - A descarga típica é de 3C (≈ 18 A por célula, ≈ 54 A no pack); conferir no datasheet.
+  - BMS **4S LiFePO4** com balanceamento, de ≥ 100 A.
+  - Fita de níquel puro grossa (0,2 mm, em várias camadas) ou chapa de cobre/níquel; existem 32700 com terminal de parafuso, que não precisam de solda.
+- **Alternativa Li-ion:** 18650 de alta descarga (Samsung 25R, LG HG2, Molicel P28A) em 3S, com fonte limitada a 12,6 V.
