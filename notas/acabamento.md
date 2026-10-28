@@ -37,7 +37,13 @@
 - **Quinas:** boleadas com fresa de raio 10 mm. Os furos dos alto-falantes também levam a borda boleada.
 - **Alto-falantes embutidos:** rebaixo de ≈ 6 mm, do tamanho da moldura, feito com a tupia e um compasso ou gabarito circular. Rebaixo para o sub com ≈ Ø 211 mm; para os JBL, medir a moldura (≈ Ø 141 mm).
 - **Frisos de 3 mm** (fresa reta ou em V, ≈ 2 mm de profundidade), pintados de laranja:
-  - na frente, uma moldura a 22 mm da borda;
+  - na frente, uma moldura a **15 mm** da borda;
   - em cada lateral, 1 friso em cima e 2 embaixo.
 - **Aros laranja** em volta dos 3 alto-falantes (anel pintado de ≈ 4 mm na borda do rebaixo), e um aro laranja na saída do duto atrás.
 - **Ordem:** cortar e colar → tupia (quinas, rebaixos, frisos) → selar bordas → primer → texturizado preto → pintar frisos e aros de laranja com pincel fino, fita crepe ou vinil laranja → montar.
+
+### Ajuste: linhas sem se encostar
+- Moldura da frente a 15 mm da borda.
+- Aros dos JBL com raio de ≈ 71,5 mm, centros a ±76 mm do meio e a 120 mm acima do centro da caixa.
+- Sub subido 13 mm: centro a ≈ 140 mm do fundo externo (antes 127 mm). Aro com raio de ≈ 107,5 mm.
+- Folgas mínimas: aro e moldura ≈ 8 mm nas laterais e ≈ 18 mm em cima e embaixo; aro e aro entre os JBL ≈ 9 mm; aro do sub e aros dos JBL ≈ 25 mm.

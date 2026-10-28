@@ -14,7 +14,7 @@ body{margin:0;width:2100px;height:1050px;background:linear-gradient(#f3f4f6,#dfe
 <script src="node_modules/three/build/three.min.js"></script>
 <script>
 const W=35,H=45,D=35,T=1.5;
-const subH=22.5, subY=-H/2+T+11.25, divY=-H/2+T+subH+T/2, upH=H-3*T-subH, jY=divY+T/2+upH/2, jX=8, bayZ0=-D/2+T, bayZ1=D/2-T-11-T;
+const subH=22.5, subY=-H/2+T+12.55, divY=-H/2+T+subH+T/2, upH=H-3*T-subH, jY=divY+T/2+upH/2, jX=7.6, bayZ0=-D/2+T, bayZ1=D/2-T-11-T;
 const X0=xr=>(W/2-T)-xr, Y0=yr=>(-H/2+T)+yr;
 function mdfTex(){const c=document.createElement('canvas');c.width=c.height=512;const g=c.getContext('2d');
  g.fillStyle='#8fa486';g.fillRect(0,0,512,512);
@@ -38,7 +38,7 @@ function scene(open){
    if(VAR.grooves){const gm=new THREE.MeshStandardMaterial({color:VAR.grooves,roughness:0.5,metalness:0.2});
      const gb=(w,h,d,x,y,z)=>{const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),gm);b.position.set(x,y,z);g.add(b);};
      for(const yy of[-H/2+6,-H/2+8,H/2-7])for(const sx of[-1,1])gb(0.06,0.32,D-6,sx*(W/2+0.005),yy,0);
-     const m2=2.2;gb(W-2*m2,0.3,0.06,0,H/2-m2,D/2+0.005);gb(W-2*m2,0.3,0.06,0,-H/2+m2,D/2+0.005);gb(0.3,H-2*m2,0.06,-W/2+m2,0,D/2+0.005);gb(0.3,H-2*m2,0.06,W/2-m2,0,D/2+0.005);}
+     const m2=1.5;gb(W-2*m2,0.3,0.06,0,H/2-m2,D/2+0.005);gb(W-2*m2,0.3,0.06,0,-H/2+m2,D/2+0.005);gb(0.3,H-2*m2,0.06,-W/2+m2,0,D/2+0.005);gb(0.3,H-2*m2,0.06,W/2-m2,0,D/2+0.005);}
  } else {
  const fsh=rectShape();for(const[x,y,r]of[[0,subY,9.25],[-jX,jY,5.6],[jX,jY,5.6]]){const h=new THREE.Path();h.absarc(x,y,r,0,Math.PI*2,true);fsh.holes.push(h);}
  const fr=new THREE.Mesh(new THREE.ExtrudeGeometry(fsh,{depth:T,bevelEnabled:false}),mdfF);fr.position.z=D/2-T;fr.castShadow=true;g.add(fr);
@@ -133,7 +133,7 @@ function scene(open){
 
  // ===== acabamento =====
  if(VAR.ring){const rm=new THREE.MeshStandardMaterial({color:VAR.ring,roughness:0.35,metalness:0.3});
-   for(const[x,y,r]of[[0,subY,10.9],[-jX,jY,7.3],[jX,jY,7.3]]){const t=new THREE.Mesh(new THREE.TorusGeometry(r,0.22,12,128),rm);t.position.set(x,y,D/2+0.05);g.add(t);}}
+   for(const[x,y,r]of[[0,subY,10.75],[-jX,jY,7.15],[jX,jY,7.15]]){const t=new THREE.Mesh(new THREE.TorusGeometry(r,0.2,12,128),rm);t.position.set(x,y,D/2+0.05);g.add(t);}}
  if(VAR.grill){const gt=tex(256,256,(q,w,h)=>{q.clearRect(0,0,w,h);q.fillStyle='rgba(20,20,22,0.92)';for(let y=6;y<h;y+=12)for(let x=6;x<w;x+=12){q.beginPath();q.arc(x+(y/12%2?6:0),y,4.2,0,7);q.fill();}},5);
    const gm=new THREE.MeshStandardMaterial({map:gt,transparent:true,metalness:0.8,roughness:0.4,side:THREE.DoubleSide,alphaTest:0.05});
    for(const[x,y,r]of[[0,subY,10.6],[-jX,jY,7.1],[jX,jY,7.1]]){const d=new THREE.Mesh(new THREE.CircleGeometry(r,96),gm);d.position.set(x,y,D/2+1.9);g.add(d);
