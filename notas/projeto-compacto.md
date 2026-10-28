@@ -68,3 +68,10 @@
   - BMS **4S LiFePO4** com balanceamento, de ≥ 100 A.
   - Fita de níquel puro grossa (0,2 mm, em várias camadas) ou chapa de cobre/níquel; existem 32700 com terminal de parafuso, que não precisam de solda.
 - **Alternativa Li-ion:** 18650 de alta descarga (Samsung 25R, LG HG2, Molicel P28A) em 3S, com fonte limitada a 12,6 V.
+
+## Pack Li-ion 3S7P / 3S8P (fonte regulada em ~12,4 V)
+- 3S7P = 21 células; 3S8P = 24 células (por exemplo, 3 kits de 10 de 2000 mAh, com sobra para descartar ruins).
+- Corrente por célula num pico de 40–60 A: ≈ 5–8 A (7P) ou 5–7,5 A (8P). Na média de ≈ 10 A: ≈ 1,3 A por célula.
+- Capacidade nominal: 14 Ah (7P) ou 16 Ah (8P), ≈ 155–180 Wh. Em células genéricas a real costuma ser menor.
+- Tamanho do 3S8P deitado: ≈ 15 × 6 × 7 cm, ≈ 1,1 kg.
+- Obrigatório: testar capacidade e resistência interna de cada célula, montar grupos paralelos equilibrados, BMS 3S ≥ 100 A com balanceamento, e ligações série dimensionadas para 60–80 A.
