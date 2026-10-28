@@ -123,3 +123,15 @@
   - Cabos de força trançados (+ e − juntos).
   - Ferrite e filtro LC na alimentação do módulo e do processador. Se ainda chiar, usar isolador de terra (ground loop isolator) no áudio do módulo.
   - Antena do Bluetooth longe de metal e da fonte.
+
+## ✅ Versão 35 × 45 × 35 cm (atual, pedida pelo dono)
+![35x45x35](projeto-compacto-35x45x35.png)
+
+- **Medida externa:** 350 × 450 × 350 mm (L × A × P), em MDF de 15 mm. Interno: 320 × 420 × 320 mm.
+- **Câmara do sub (embaixo):** interno 320 × 225 × 320 mm, ou seja, 23 L bruto e **≈ 19,6 L líquidos**.
+  - **Sintonia ≈ 36 Hz.** F3 ≈ 32 Hz ao ar livre (simulado), sem pico.
+  - Limite de excursão em ≈ 155 W de grave contínuo; SPL em 35 Hz ≈ 106 dB.
+  - **Duto:** PVC 75 mm, ≈ 40 cm em "L". Sai pela traseira embaixo, vai para o lado e sobe. A velocidade do ar fica em ≈ 26 m/s no limite, então arredondar as pontas.
+- **Divisória vedada.**
+- **Parte de cima:** interno 320 × 180 × 320 mm, com JBL, processador e módulo na frente; amplificador no meio; fonte, bateria, barramentos e fusível no fundo.
+- Simulação em `ferramentas/sim_35x45x35.py`.
