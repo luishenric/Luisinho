@@ -9,7 +9,7 @@ body{margin:0;width:2100px;height:1100px;background:linear-gradient(#f3f4f6,#dfe
 <div id="t">Caixa 35 × 45 × 35 cm – sinal na frente, potência no fundo</div>
 <div id="s">350 × 450 × 350 mm (L × A × P) · sub ≈ 19,6 L, sintonia ≈ 36 Hz, grave até ≈ 32 Hz · duto 75 mm ≈ 40 cm</div>
 <div class="c" id="a" style="left:0"></div><div class="c" id="b" style="left:700px"></div><div class="c" id="c" style="left:1400px"></div>
-<div class="l" style="left:1400px">Traseira aberta – duto do sub</div><div class="l" style="left:0">Fechada</div><div class="l" style="left:700px">Sem a tampa de cima (frente embaixo)</div>
+<div class="l" style="left:1400px">Traseira aberta – duto do sub</div><div class="l" style="left:0">Fechada</div><div class="l" style="left:700px">Alto-falantes de perto</div>
 <div id="f"><span style='color:#43a047'>▬</span> zona de sinal (frente) &nbsp; <span style='color:#e53935'>▬</span> zona de potência (fundo) &nbsp;·&nbsp; <span style='color:#c8742c'>■</span> bateria Li-ion 3S8P &nbsp; <span style='color:#9aa3ad'>■</span> fonte chaveada 12 V 60 A &nbsp; <span style='color:#222'>■</span> SounDigital SD800.4 EVO 6 &nbsp; <span style='color:#2e7d32'>■</span> processador &nbsp; <span style='color:#0d47a1'>■</span> módulo BT/USB &nbsp; <span style='color:#d32f2f'>■</span>/<span style='color:#222'>■</span> barramentos + / − &nbsp; <span style='color:#e0b000'>■</span> fusível/chave</div>
 <script src="node_modules/three/build/three.min.js"></script>
 <script>
@@ -38,31 +38,65 @@ function scene(open){
  const metal=new THREE.MeshStandardMaterial({color:0xb8bcc2,metalness:0.9,roughness:0.3});
  const orange=new THREE.MeshStandardMaterial({color:0xd2691e,roughness:0.5});
  const zf=D/2;
- // sub 8"
- const spk=new THREE.Group();spk.position.y=subY;g.add(spk);
- const fs=new THREE.Shape();const r=1.6,a=10.35;fs.moveTo(-a+r,-a);fs.lineTo(a-r,-a);fs.quadraticCurveTo(a,-a,a,-a+r);fs.lineTo(a,a-r);fs.quadraticCurveTo(a,a,a-r,a);fs.lineTo(-a+r,a);fs.quadraticCurveTo(-a,a,-a,a-r);fs.lineTo(-a,-a+r);fs.quadraticCurveTo(-a,-a,-a+r,-a);
- const fh=new THREE.Path();fh.absarc(0,0,9.3,0,Math.PI*2,true);fs.holes.push(fh);
- const frame=new THREE.Mesh(new THREE.ExtrudeGeometry(fs,{depth:0.5,bevelEnabled:true,bevelSize:0.15,bevelThickness:0.15}),black);frame.position.z=zf;spk.add(frame);
- const sur=new THREE.Mesh(new THREE.TorusGeometry(8.4,0.85,24,96),rub);sur.position.z=zf+0.25;spk.add(sur);
- const pts=[];for(let i=0;i<=20;i++){const t=i/20;pts.push(new THREE.Vector2(2.6+t*5,-3.2+Math.pow(t,0.8)*3.4));}
- const cn=new THREE.Mesh(new THREE.LatheGeometry(pts,96),cone);cn.rotation.x=Math.PI/2;cn.position.z=zf+0.2;spk.add(cn);
- const cap=new THREE.Mesh(new THREE.SphereGeometry(3.4,48,24,0,Math.PI*2,0,Math.PI/3.2),rub);cap.rotation.x=Math.PI/2;cap.position.z=zf-3.6;spk.add(cap);
- for(const[x,y]of[[-8.7,-8.7],[8.7,-8.7],[-8.7,8.7],[8.7,8.7]]){const sc=new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.35,0.3,16),metal);sc.rotation.x=Math.PI/2;sc.position.set(x,y,zf+0.8);spk.add(sc);}
- const bask=new THREE.Mesh(new THREE.CylinderGeometry(9,6.7,9.5,48,1,true),black);bask.rotation.x=Math.PI/2;bask.position.z=zf-T-4.75;spk.add(bask);
- const mag=new THREE.Mesh(new THREE.CylinderGeometry(6.7,6.7,3.6,48),new THREE.MeshStandardMaterial({color:0x2d2f33,metalness:0.6,roughness:0.4}));mag.rotation.x=Math.PI/2;mag.position.z=zf-11.3;spk.add(mag);
- // JBL 5" triaxial/coaxial
- for(const sx of[-jX,jX]){const j=new THREE.Group();j.position.set(sx,jY,0);g.add(j);
-  const fr2=new THREE.Mesh(new THREE.CylinderGeometry(6.7,6.7,0.5,64),black);fr2.rotation.x=Math.PI/2;fr2.position.z=zf+0.25;j.add(fr2);
-  const s2=new THREE.Mesh(new THREE.TorusGeometry(5.3,0.5,16,64),rub);s2.position.z=zf+0.4;j.add(s2);
-  const p2=[];for(let i=0;i<=16;i++){const t=i/16;p2.push(new THREE.Vector2(1.5+t*3.4,-2+Math.pow(t,0.8)*2.2));}
-  const c2=new THREE.Mesh(new THREE.LatheGeometry(p2,64),cone);c2.rotation.x=Math.PI/2;c2.position.z=zf+0.3;j.add(c2);
-  const br=new THREE.Mesh(new THREE.BoxGeometry(3.2,6.5,1.2),black);br.position.set(0,-0.6,zf+0.2);j.add(br);
-  const tw=new THREE.Mesh(new THREE.SphereGeometry(1.2,24,12,0,Math.PI*2,0,Math.PI/2),new THREE.MeshStandardMaterial({color:0x333,metalness:0.4,roughness:0.3}));tw.rotation.x=Math.PI/2;tw.position.set(0,-2.6,zf+0.8);j.add(tw);
-  const ring=new THREE.Mesh(new THREE.TorusGeometry(1.35,0.12,8,32),orange);ring.position.set(0,-2.6,zf+0.85);j.add(ring);
-  const tri=new THREE.Mesh(new THREE.TorusGeometry(1.6,0.1,3,3),orange);tri.rotation.z=-Math.PI/2;tri.position.set(0,0.6,zf+0.85);j.add(tri);
-  const jm=new THREE.Mesh(new THREE.CylinderGeometry(3.2,3.2,2,32),new THREE.MeshStandardMaterial({color:0x2d2f33,metalness:0.6,roughness:0.4}));jm.rotation.x=Math.PI/2;jm.position.z=zf-T-4.5;j.add(jm);
-  const jb=new THREE.Mesh(new THREE.CylinderGeometry(5.5,3.2,3,32,1,true),black);jb.rotation.x=Math.PI/2;jb.position.z=zf-T-2;j.add(jb);}
 
+ // ===== texturas =====
+ const cv=(w,h,fn)=>{const c=document.createElement('canvas');c.width=w;c.height=h;fn(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t;};
+ const coneTex=(base,fib)=>cv(1024,512,(g,w,h)=>{g.fillStyle=base;g.fillRect(0,0,w,h);
+   for(let i=0;i<1400;i++){g.strokeStyle=`rgba(${fib},${Math.random()*0.035})`;g.lineWidth=Math.random()*1.2;const x=Math.random()*w;g.beginPath();g.moveTo(x,0);g.lineTo(x+(Math.random()-0.5)*6,h);g.stroke();}
+   for(let r=0;r<6;r++){const y=h*(0.15+r*0.14);g.fillStyle='rgba(255,255,255,0.035)';g.fillRect(0,y,w,3);g.fillStyle='rgba(0,0,0,0.25)';g.fillRect(0,y+3,w,2);} });
+ const logoSub=cv(512,512,(g,w,h)=>{g.clearRect(0,0,w,h);g.textAlign='center';
+   g.fillStyle='#f2f2f2';g.font='italic bold 120px Arial';g.fillText('Bomber',w/2,h/2+10);
+   g.fillStyle='#e53935';g.font='bold 56px Arial';g.fillText('BICHO PAPÃO',w/2,h/2+85);
+   g.strokeStyle='rgba(229,57,53,0.9)';g.lineWidth=6;g.beginPath();g.arc(w/2,h/2,236,0,Math.PI*2);g.stroke();});
+ const logoJBL=cv(256,128,(g,w,h)=>{g.clearRect(0,0,w,h);g.fillStyle='#e53935';g.font='bold 92px Arial';g.textAlign='center';g.fillText('JBL',w/2,96);});
+ const rubM=new THREE.MeshPhysicalMaterial({color:0x151515,roughness:0.55,clearcoat:0.3,clearcoatRoughness:0.6});
+ const gunM=new THREE.MeshStandardMaterial({color:0x2a2c30,roughness:0.35,metalness:0.75});
+ const plastM=new THREE.MeshStandardMaterial({color:0x141414,roughness:0.5,metalness:0.1});
+ const screwM=new THREE.MeshStandardMaterial({color:0xcfd3d8,roughness:0.25,metalness:1});
+ const orangeM=new THREE.MeshStandardMaterial({color:0xe0702a,roughness:0.4,emissive:0x3a1400});
+ const subCone=new THREE.MeshStandardMaterial({map:coneTex('#1b1b1d','255,255,255'),roughness:0.85,side:THREE.DoubleSide});
+ const midCone=new THREE.MeshStandardMaterial({map:coneTex('#202022','200,200,210'),roughness:0.6,metalness:0.1,side:THREE.DoubleSide});
+ const screw=(par,x,y,z,r=0.38)=>{const h=new THREE.Mesh(new THREE.CylinderGeometry(r,r,0.25,20),screwM);h.rotation.x=Math.PI/2;h.position.set(x,y,z);par.add(h);
+   const sl=new THREE.Mesh(new THREE.BoxGeometry(r*1.5,0.08,0.05),new THREE.MeshStandardMaterial({color:0x333}));sl.position.set(x,y,z+0.13);par.add(sl);};
+ const lathe=(r0,r1,depth,curve,mat,seg=128)=>{const p=[];for(let i=0;i<=24;i++){const t=i/24;p.push(new THREE.Vector2(r0+t*(r1-r0),-depth+Math.pow(t,curve)*depth));}
+   const m=new THREE.Mesh(new THREE.LatheGeometry(p,seg),mat);m.rotation.x=Math.PI/2;return m;};
+ // ===== sub Bomber Bicho Papão 8" =====
+ const spk=new THREE.Group();spk.position.y=subY;g.add(spk);
+ { const a=10.35,c=1.8;const fs=new THREE.Shape();fs.moveTo(-a+c,-a);fs.lineTo(a-c,-a);fs.quadraticCurveTo(a,-a,a,-a+c);fs.lineTo(a,a-c);fs.quadraticCurveTo(a,a,a-c,a);fs.lineTo(-a+c,a);fs.quadraticCurveTo(-a,a,-a,a-c);fs.lineTo(-a,-a+c);fs.quadraticCurveTo(-a,-a,-a+c,-a);
+   const fh=new THREE.Path();fh.absarc(0,0,9.35,0,Math.PI*2,true);fs.holes.push(fh);
+   const fr=new THREE.Mesh(new THREE.ExtrudeGeometry(fs,{depth:0.55,bevelEnabled:true,bevelSize:0.18,bevelThickness:0.18,bevelSegments:3}),gunM);fr.position.z=zf;fr.castShadow=true;spk.add(fr);
+   const lip=new THREE.Mesh(new THREE.TorusGeometry(9.45,0.28,16,128),gunM);lip.position.z=zf+0.75;spk.add(lip);
+   for(const[x,y]of[[-8.9,-8.9],[8.9,-8.9],[-8.9,8.9],[8.9,8.9],[0,-9.9],[0,9.9],[-9.9,0],[9.9,0]])screw(spk,x,y,zf+0.85);
+   const sur=new THREE.Mesh(new THREE.TorusGeometry(8.3,1.0,40,160,Math.PI*2),rubM);sur.scale.z=1.15;sur.position.z=zf+0.15;spk.add(sur);
+   const cn=lathe(3.4,7.35,3.6,0.75,subCone,160);cn.position.z=zf+0.15;spk.add(cn);
+   const capR=4.6,capA=0.62;const cap=new THREE.Mesh(new THREE.SphereGeometry(capR,64,32,0,Math.PI*2,0,capA),new THREE.MeshPhysicalMaterial({color:0x111113,roughness:0.25,clearcoat:1,clearcoatRoughness:0.15}));
+   cap.rotation.x=Math.PI/2;cap.position.z=zf-3.45-capR*Math.cos(capA)+0.05;spk.add(cap);
+   const dec=new THREE.Mesh(new THREE.CircleGeometry(3.3,64),new THREE.MeshStandardMaterial({map:logoSub,transparent:true,roughness:0.4}));dec.position.z=zf-3.45+capR*(1-Math.cos(capA))+0.06;spk.add(dec);
+   const bask=new THREE.Mesh(new THREE.CylinderGeometry(9,6.7,9.5,48,1,true),gunM);bask.rotation.x=Math.PI/2;bask.position.z=zf-T-4.75;spk.add(bask);
+   const magM=new THREE.MeshStandardMaterial({color:0x26282c,metalness:0.6,roughness:0.45});
+   for(const[zz,hh]of[[-10.3,1.8],[-12.2,1.8]]){const m=new THREE.Mesh(new THREE.CylinderGeometry(6.7,6.7,hh,64),magM);m.rotation.x=Math.PI/2;m.position.z=zf+zz;spk.add(m);}
+   const bp=new THREE.Mesh(new THREE.CylinderGeometry(6.9,6.9,0.5,64),screwM);bp.rotation.x=Math.PI/2;bp.position.z=zf-13.35;spk.add(bp);
+   const vent=new THREE.Mesh(new THREE.CylinderGeometry(1.2,1.2,0.6,32),new THREE.MeshBasicMaterial({color:0x050505}));vent.rotation.x=Math.PI/2;vent.position.z=zf-13.4;spk.add(vent); }
+ // ===== JBL Multisystem 5TRMS80 (triaxial) =====
+ for(const sx of[-jX,jX]){const j=new THREE.Group();j.position.set(sx,jY,0);g.add(j);
+   const rs=new THREE.Shape();rs.absarc(0,0,6.9,0,Math.PI*2,false);const rh=new THREE.Path();rh.absarc(0,0,5.75,0,Math.PI*2,true);rs.holes.push(rh);
+   const ring=new THREE.Mesh(new THREE.ExtrudeGeometry(rs,{depth:0.45,bevelEnabled:true,bevelSize:0.15,bevelThickness:0.15,bevelSegments:3,curveSegments:96}),plastM);ring.position.z=zf;ring.castShadow=true;j.add(ring);
+   for(const ang of[45,135,225,315]){const r=6.35;screw(j,r*Math.cos(ang*Math.PI/180),r*Math.sin(ang*Math.PI/180),zf+0.7,0.28);}
+   const lg=new THREE.Mesh(new THREE.PlaneGeometry(1.9,0.95),new THREE.MeshBasicMaterial({map:logoJBL,transparent:true}));lg.position.set(0,6.3,zf+0.62);j.add(lg);
+   const sur=new THREE.Mesh(new THREE.TorusGeometry(5.25,0.5,28,120),rubM);sur.position.z=zf+0.1;j.add(sur);
+   const cn=lathe(1.3,4.8,2.1,0.85,midCone,120);cn.position.z=zf+0.15;j.add(cn);
+   const post=new THREE.Mesh(new THREE.CylinderGeometry(0.75,0.95,2.6,24),plastM);post.rotation.x=Math.PI/2;post.position.z=zf-0.4;j.add(post);
+   // ponte triangular (ponta para baixo) com contorno laranja
+   const tri=(R)=>{const s=new THREE.Shape();for(let k=0;k<3;k++){const an=Math.PI/2+k*2*Math.PI/3;const x=R*Math.cos(an),y=-R*Math.sin(an);k?s.lineTo(x,y):s.moveTo(x,y);}s.closePath();return s;};
+   const tb=new THREE.Mesh(new THREE.ExtrudeGeometry(tri(2.5),{depth:0.7,bevelEnabled:true,bevelSize:0.12,bevelThickness:0.12,bevelSegments:2}),plastM);tb.position.set(0,0.55,zf+0.9);j.add(tb);
+   const os=tri(2.62);const oh=new THREE.Path();oh.setFromPoints(tri(2.28).getPoints().reverse());os.holes.push(oh);
+   const ol=new THREE.Mesh(new THREE.ExtrudeGeometry(os,{depth:0.15,bevelEnabled:false}),orangeM);ol.position.set(0,0.55,zf+1.75);j.add(ol);
+   const tw=new THREE.Mesh(new THREE.SphereGeometry(0.85,32,16,0,Math.PI*2,0,Math.PI/2),new THREE.MeshPhysicalMaterial({color:0x2b2f38,metalness:0.6,roughness:0.25,clearcoat:1}));tw.rotation.x=Math.PI/2;tw.position.set(0,0.95,zf+1.85);j.add(tw);
+   const st=new THREE.Mesh(new THREE.CylinderGeometry(0.95,1.05,0.9,32),plastM);st.rotation.x=Math.PI/2;st.position.set(0,-2.55,zf+1.05);j.add(st);
+   const sd=new THREE.Mesh(new THREE.SphereGeometry(0.6,24,12,0,Math.PI*2,0,Math.PI/2),new THREE.MeshPhysicalMaterial({color:0x1d2026,metalness:0.7,roughness:0.2,clearcoat:1}));sd.rotation.x=Math.PI/2;sd.position.set(0,-2.55,zf+1.5);j.add(sd);
+   const sr=new THREE.Mesh(new THREE.TorusGeometry(0.85,0.11,12,48),orangeM);sr.position.set(0,-2.55,zf+1.55);j.add(sr);
+   const jb=new THREE.Mesh(new THREE.CylinderGeometry(5.5,3.2,3,32,1,true),plastM);jb.rotation.x=Math.PI/2;jb.position.z=zf-T-2;j.add(jb);
+   const jm=new THREE.Mesh(new THREE.CylinderGeometry(3.2,3.2,2,32),new THREE.MeshStandardMaterial({color:0x2d2f33,metalness:0.6,roughness:0.4}));jm.rotation.x=Math.PI/2;jm.position.z=zf-T-4.5;j.add(jm); }
  // compartimento técnico
  const box=(w,h,d,x,y,z,col,met=0.2)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color:col,roughness:0.5,metalness:met}));m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;g.add(m);return m;};
  const by=divY+T/2;
@@ -106,6 +140,6 @@ function scene(open){
 let NOTOP=false;
 function render(id,open,cam,up){const el=document.getElementById(id);const rd=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
  rd.setSize(700,880);rd.shadowMap.enabled=true;rd.shadowMap.type=THREE.PCFSoftShadowMap;rd.outputColorSpace=THREE.SRGBColorSpace;rd.toneMapping=THREE.ACESFilmicToneMapping;el.appendChild(rd.domElement);
- const c=new THREE.PerspectiveCamera(30,700/880,1,500);c.position.set(...cam);if(up)c.up.set(...up);c.lookAt(0,up?8:-1,0);rd.render(scene(open),c);}
-NOTOP=false;render('a',false,[78,54,132]);NOTOP=true;render('b',false,[0,125,0.01],[0,0,-1]);NOTOP=false;render('c',true,[-78,50,-128]);window.done=true;
+ const c=new THREE.PerspectiveCamera(30,700/880,1,500);c.position.set(...cam);if(up)c.up.set(...up);c.lookAt(0,id==='b'?0:(up?8:-1),0);rd.render(scene(open),c);}
+NOTOP=false;render('a',false,[78,54,132]);NOTOP=true;NOTOP=false;render('b',false,[10,4,112]);render('c',true,[-78,50,-128]);window.done=true;
 </script></body></html>
