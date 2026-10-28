@@ -31,3 +31,25 @@
 - Furo e profundidade dos JBL Multisystem 5" (medir; um 5" típico tem furo de cerca de 11–12 cm e frame de cerca de 13,5 cm).
 - Medidas da caixa atual, para comparar.
 - Quantos canais tem o amplificador de 800 W.
+
+## Revisão: compartimento técnico (tomada + bateria)
+
+![Esquema de ligação](projeto-compacto-ligacao.png)
+
+- **Medida externa:** 320 × 480 × 340 mm (L × A × P).
+- **Câmara do sub (embaixo):** interno 290 × 220 × 310 mm, cerca de 15,8 L líquidos. Duto de 75 mm com cerca de 48 cm saindo pela traseira.
+- **JBL:** os dois juntos numa câmara **fechada** na frente de cima (interno 290 × 215 × 110 mm, cerca de 6 L).
+- **Compartimento técnico:** atrás da câmara dos JBL (interno 290 × 215 × 185 mm, cerca de 11,5 L), vedado em relação às câmaras de som.
+  - Tampa traseira removível, com grelha de ventilação e, se precisar, uma ventoinha de 12 V.
+  - Cabem a bateria LiFePO4 12 V 20 Ah (em pé), a fonte chaveada 60 A (deitada), o amplificador (preso na parede) e o processador.
+  - Os barramentos + e − e o fusível com chave geral ficam na lateral.
+- **Alimentação:**
+  - A fonte chaveada 12 V 60 A fica ajustada em 14,2–14,4 V e precisa ter **limite de corrente** ou função carregador.
+  - Ela fica em paralelo com a bateria pelo barramento. Com tomada, a fonte alimenta o som e carrega a bateria. Sem tomada, a bateria segura tudo.
+  - Um diodo ou relé isola a fonte quando está desligada.
+- **Fusíveis:**
+  - bateria: 100 A, perto do polo;
+  - amplificador: conforme o manual;
+  - processador: 5 A;
+  - módulo: 3 A.
+- **Cabos principais:** 16–25 mm².
