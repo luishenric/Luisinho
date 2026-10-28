@@ -1,0 +1,112 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;width:1600px;height:1100px;background:linear-gradient(#f3f4f6,#dfe3e8);font-family:Arial,Helvetica,sans-serif;overflow:hidden}
+#t{position:absolute;top:22px;width:100%;text-align:center;font-size:34px;font-weight:bold;color:#1f2933}
+#s{position:absolute;top:70px;width:100%;text-align:center;font-size:20px;color:#52606d}
+.c{position:absolute;top:105px;width:800px;height:880px}
+.l{position:absolute;top:975px;width:800px;text-align:center;font-size:22px;font-weight:bold;color:#1f2933}
+#f{position:absolute;bottom:14px;width:100%;text-align:center;font-size:15px;color:#52606d;line-height:1.6}
+</style></head><body>
+<div id="t">Caixa mais funda – sinal na frente, potência no fundo</div>
+<div id="s">320 × 411 × 360 mm (L × A × P) · mais funda e mais baixa · sub ≈ 15,8 L, sintonia ≈ 37 Hz</div>
+<div class="c" id="a" style="left:0"></div><div class="c" id="b" style="left:800px"></div>
+<div class="l" style="left:0">Fechada</div><div class="l" style="left:800px">Sem a tampa de cima (frente embaixo)</div>
+<div id="f"><span style='color:#43a047'>▬</span> zona de sinal (frente) &nbsp; <span style='color:#e53935'>▬</span> zona de potência (fundo) &nbsp;·&nbsp; <span style='color:#c8742c'>■</span> bateria Li-ion 3S8P &nbsp; <span style='color:#9aa3ad'>■</span> fonte chaveada 12 V 60 A &nbsp; <span style='color:#222'>■</span> SounDigital SD800.4 EVO 6 &nbsp; <span style='color:#2e7d32'>■</span> processador &nbsp; <span style='color:#0d47a1'>■</span> módulo BT/USB &nbsp; <span style='color:#d32f2f'>■</span>/<span style='color:#222'>■</span> barramentos + / − &nbsp; <span style='color:#e0b000'>■</span> fusível/chave</div>
+<script src="node_modules/three/build/three.min.js"></script>
+<script>
+const W=32,H=41.1,D=36,T=1.5;
+const subH=20.6, subY=-H/2+T+11.3, divY=-H/2+T+subH+T/2, upH=H-3*T-subH, jY=divY+T/2+upH/2, jX=7.5, bayZ0=-D/2+T, bayZ1=D/2-T-11-T;
+const X0=xr=>(W/2-T)-xr, Y0=yr=>(-H/2+T)+yr;
+function mdfTex(){const c=document.createElement('canvas');c.width=c.height=512;const g=c.getContext('2d');
+ g.fillStyle='#8fa486';g.fillRect(0,0,512,512);
+ for(let i=0;i<5000;i++){g.fillStyle=`rgba(${150+Math.random()*80|0},${130+Math.random()*60|0},${80+Math.random()*50|0},${Math.random()*0.25})`;g.save();g.translate(Math.random()*512,Math.random()*512);g.rotate(Math.random()*6);g.fillRect(0,0,6+Math.random()*8,1.2);g.restore();}
+ const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;return t;}
+function scene(open){
+ const s=new THREE.Scene();const mdf=new THREE.MeshStandardMaterial({map:mdfTex(),roughness:0.85});
+ const g=new THREE.Group();s.add(g);
+ const panel=(w,h,d,x,y,z)=>{const p=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mdf);p.position.set(x,y,z);p.castShadow=p.receiveShadow=true;g.add(p);return p;};
+ const rectShape=()=>{const sh=new THREE.Shape();sh.moveTo(-W/2,-H/2);sh.lineTo(W/2,-H/2);sh.lineTo(W/2,H/2);sh.lineTo(-W/2,H/2);sh.lineTo(-W/2,-H/2);return sh;};
+ const fsh=rectShape();for(const[x,y,r]of[[0,subY,9.25],[-jX,jY,5.6],[jX,jY,5.6]]){const h=new THREE.Path();h.absarc(x,y,r,0,Math.PI*2,true);fsh.holes.push(h);}
+ const fr=new THREE.Mesh(new THREE.ExtrudeGeometry(fsh,{depth:T,bevelEnabled:false}),mdf);fr.position.z=D/2-T;fr.castShadow=true;g.add(fr);
+ panel(W,T,D-T,0,-H/2+T/2,-T/2);if(!NOTOP)panel(W,T,D-T,0,H/2-T/2,-T/2);
+ panel(T,H-2*T,D-T,-W/2+T/2,0,-T/2);panel(T,H-2*T,D-T,W/2-T/2,0,-T/2);
+ panel(W-2*T,T,D-2*T,0,divY,0); // divisória horizontal
+ if(!open){const bk=rectShape();const p=new THREE.Path();p.absarc(X0(24.5),Y0(4.5),3.75,0,Math.PI*2,true);bk.holes.push(p);
+  const b=new THREE.Mesh(new THREE.ExtrudeGeometry(bk,{depth:T,bevelEnabled:false}),mdf);b.position.z=-D/2;g.add(b);}
+ const black=new THREE.MeshStandardMaterial({color:0x1c1c1c,roughness:0.6,metalness:0.2});
+ const cone=new THREE.MeshStandardMaterial({color:0x2a2a2a,roughness:0.9,side:THREE.DoubleSide});
+ const rub=new THREE.MeshStandardMaterial({color:0x111111,roughness:0.5});
+ const metal=new THREE.MeshStandardMaterial({color:0xb8bcc2,metalness:0.9,roughness:0.3});
+ const orange=new THREE.MeshStandardMaterial({color:0xd2691e,roughness:0.5});
+ const zf=D/2;
+ // sub 8"
+ const spk=new THREE.Group();spk.position.y=subY;g.add(spk);
+ const fs=new THREE.Shape();const r=1.6,a=10.35;fs.moveTo(-a+r,-a);fs.lineTo(a-r,-a);fs.quadraticCurveTo(a,-a,a,-a+r);fs.lineTo(a,a-r);fs.quadraticCurveTo(a,a,a-r,a);fs.lineTo(-a+r,a);fs.quadraticCurveTo(-a,a,-a,a-r);fs.lineTo(-a,-a+r);fs.quadraticCurveTo(-a,-a,-a+r,-a);
+ const fh=new THREE.Path();fh.absarc(0,0,9.3,0,Math.PI*2,true);fs.holes.push(fh);
+ const frame=new THREE.Mesh(new THREE.ExtrudeGeometry(fs,{depth:0.5,bevelEnabled:true,bevelSize:0.15,bevelThickness:0.15}),black);frame.position.z=zf;spk.add(frame);
+ const sur=new THREE.Mesh(new THREE.TorusGeometry(8.4,0.85,24,96),rub);sur.position.z=zf+0.25;spk.add(sur);
+ const pts=[];for(let i=0;i<=20;i++){const t=i/20;pts.push(new THREE.Vector2(2.6+t*5,-3.2+Math.pow(t,0.8)*3.4));}
+ const cn=new THREE.Mesh(new THREE.LatheGeometry(pts,96),cone);cn.rotation.x=Math.PI/2;cn.position.z=zf+0.2;spk.add(cn);
+ const cap=new THREE.Mesh(new THREE.SphereGeometry(3.4,48,24,0,Math.PI*2,0,Math.PI/3.2),rub);cap.rotation.x=Math.PI/2;cap.position.z=zf-3.6;spk.add(cap);
+ for(const[x,y]of[[-8.7,-8.7],[8.7,-8.7],[-8.7,8.7],[8.7,8.7]]){const sc=new THREE.Mesh(new THREE.CylinderGeometry(0.35,0.35,0.3,16),metal);sc.rotation.x=Math.PI/2;sc.position.set(x,y,zf+0.8);spk.add(sc);}
+ const bask=new THREE.Mesh(new THREE.CylinderGeometry(9,6.7,9.5,48,1,true),black);bask.rotation.x=Math.PI/2;bask.position.z=zf-T-4.75;spk.add(bask);
+ const mag=new THREE.Mesh(new THREE.CylinderGeometry(6.7,6.7,3.6,48),new THREE.MeshStandardMaterial({color:0x2d2f33,metalness:0.6,roughness:0.4}));mag.rotation.x=Math.PI/2;mag.position.z=zf-11.3;spk.add(mag);
+ // JBL 5" triaxial/coaxial
+ for(const sx of[-jX,jX]){const j=new THREE.Group();j.position.set(sx,jY,0);g.add(j);
+  const fr2=new THREE.Mesh(new THREE.CylinderGeometry(6.7,6.7,0.5,64),black);fr2.rotation.x=Math.PI/2;fr2.position.z=zf+0.25;j.add(fr2);
+  const s2=new THREE.Mesh(new THREE.TorusGeometry(5.3,0.5,16,64),rub);s2.position.z=zf+0.4;j.add(s2);
+  const p2=[];for(let i=0;i<=16;i++){const t=i/16;p2.push(new THREE.Vector2(1.5+t*3.4,-2+Math.pow(t,0.8)*2.2));}
+  const c2=new THREE.Mesh(new THREE.LatheGeometry(p2,64),cone);c2.rotation.x=Math.PI/2;c2.position.z=zf+0.3;j.add(c2);
+  const br=new THREE.Mesh(new THREE.BoxGeometry(3.2,6.5,1.2),black);br.position.set(0,-0.6,zf+0.2);j.add(br);
+  const tw=new THREE.Mesh(new THREE.SphereGeometry(1.2,24,12,0,Math.PI*2,0,Math.PI/2),new THREE.MeshStandardMaterial({color:0x333,metalness:0.4,roughness:0.3}));tw.rotation.x=Math.PI/2;tw.position.set(0,-2.6,zf+0.8);j.add(tw);
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(1.35,0.12,8,32),orange);ring.position.set(0,-2.6,zf+0.85);j.add(ring);
+  const tri=new THREE.Mesh(new THREE.TorusGeometry(1.6,0.1,3,3),orange);tri.rotation.z=-Math.PI/2;tri.position.set(0,0.6,zf+0.85);j.add(tri);
+  const jm=new THREE.Mesh(new THREE.CylinderGeometry(3.2,3.2,2,32),new THREE.MeshStandardMaterial({color:0x2d2f33,metalness:0.6,roughness:0.4}));jm.rotation.x=Math.PI/2;jm.position.z=zf-T-4.5;j.add(jm);
+  const jb=new THREE.Mesh(new THREE.CylinderGeometry(5.5,3.2,3,32,1,true),black);jb.rotation.x=Math.PI/2;jb.position.z=zf-T-2;j.add(jb);}
+
+ // compartimento técnico
+ const box=(w,h,d,x,y,z,col,met=0.2)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color:col,roughness:0.5,metalness:met}));m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;g.add(m);return m;};
+ const by=divY+T/2;
+ const zb=-D/2+T, zfr=D/2-T;
+ // zonas (piso da parte de cima)
+ const zone=(z0,z1,col)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(W-2*T-0.4,0.08,z1-z0),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:0.35}));m.position.set(0,by+0.05,(z0+z1)/2);g.add(m);};
+ zone(zb,zb+16,0xe53935); zone(zfr-14,zfr,0x43a047);
+ box(21.5,11.5,5,-3.5,by+5.75,zb+2.6,0x9aa3ad,0.7);         // fonte em pé, encostada atrás
+ for(let i=0;i<10;i++)box(0.25,9.5,0.2,-12.5+i*2,by+5.75,zb+5.15,0x5f6770,0.6);
+ box(6,6.5,15,10.5,by+3.25,zb+7.5,0xc8742c);                // bateria 3S8P na lateral, ao fundo
+ box(9,1.2,1.2,-6,by+14.6,zb+1.2,0xd32f2f,0.5);             // barramento +
+ box(9,1.2,1.2,-6,by+12.9,zb+1.2,0x222222,0.5);           // barramento -
+ box(3,3.5,1.5,11,by+9,zb+1,0xffd54f);                      // fusível/chave
+ box(11.2,5.2,10.7,-7.5,by+2.6,zb+12.8,0x3a3d42,0.5);       // amplificador no meio
+ for(let i=0;i<6;i++)box(10.6,0.8,0.35,-7.5,by+5.6,zb+8.3+i*1.75,0x2a2c30,0.6);
+ box(9,2.4,6,-7,by+13.2,zfr-11.5,0x2e7d32);                 // processador (frente, sob a tampa)
+ box(9,2,4.5,7,by+13.5,zfr-11.5,0x0d47a1);                  // módulo BT/USB (frente, sob a tampa)
+ // topo: alça e módulo
+ if(!NOTOP){const hd=new THREE.Mesh(new THREE.BoxGeometry(12,0.6,7),metal);hd.position.set(0,H/2+0.1,-2);g.add(hd);
+ const hd2=new THREE.Mesh(new THREE.BoxGeometry(9,0.3,3.5),black);hd2.position.set(0,H/2+0.45,-2);g.add(hd2);
+ const md=new THREE.Mesh(new THREE.BoxGeometry(9,0.3,2.6),black);md.position.set(0,H/2+0.12,D/2-4);g.add(md);
+ for(let i=0;i<4;i++){const led=new THREE.Mesh(new THREE.BoxGeometry(0.8,0.1,0.5),new THREE.MeshBasicMaterial({color:[0xff3030,0x30ff60,0xffd030,0x3080ff][i]}));led.position.set(-1.5+i*1.1,H/2+0.32,D/2-4);g.add(led);}}
+ // duto
+ const pvc=new THREE.MeshStandardMaterial({color:0x3d8bd4,roughness:0.45,side:THREE.DoubleSide});
+ const zp=-D/2+T+4.5,R=4.2,P=(x,y,z)=>new THREE.Vector3(x,y,z),path=new THREE.CurvePath();
+ const seg=(a,b)=>path.add(new THREE.LineCurve3(a,b)),bend=(a,c,b)=>path.add(new THREE.QuadraticBezierCurve3(a,c,b));
+ const ex=X0(24.5),ey=Y0(4.5),lx=X0(4.5),ty=Y0(16.1),endx=X0(14.9),sg=Math.sign(lx-ex);
+ seg(P(ex,ey,-D/2),P(ex,ey,zp-R));bend(P(ex,ey,zp-R),P(ex,ey,zp),P(ex+sg*R,ey,zp));
+ seg(P(ex+sg*R,ey,zp),P(lx-sg*R,ey,zp));bend(P(lx-sg*R,ey,zp),P(lx,ey,zp),P(lx,ey+R,zp));
+ seg(P(lx,ey+R,zp),P(lx,ty-R,zp));bend(P(lx,ty-R,zp),P(lx,ty,zp),P(lx-sg*R,ty,zp));
+ seg(P(lx-sg*R,ty,zp),P(endx,ty,zp));
+ const tube=new THREE.Mesh(new THREE.TubeGeometry(path,300,3.75,48,false),pvc);tube.castShadow=true;g.add(tube);
+ const ringM=new THREE.MeshStandardMaterial({color:0x2a6fb0,roughness:0.4});
+ const f1=new THREE.Mesh(new THREE.TorusGeometry(3.95,0.5,16,64),ringM);f1.position.set(ex,ey,-D/2-0.1);g.add(f1);
+ const f2=new THREE.Mesh(new THREE.TorusGeometry(3.95,0.35,16,64),ringM);f2.rotation.y=Math.PI/2;f2.position.set(endx,ty,zp);g.add(f2);
+ const hole=new THREE.Mesh(new THREE.CircleGeometry(3.6,48),new THREE.MeshBasicMaterial({color:0x0b1a2a}));hole.position.set(ex,ey,-D/2-0.12);hole.rotation.y=Math.PI;g.add(hole);
+ const fl0=new THREE.Mesh(new THREE.PlaneGeometry(400,400),new THREE.ShadowMaterial({opacity:0.22}));fl0.rotation.x=-Math.PI/2;fl0.position.y=-H/2-0.01;fl0.receiveShadow=true;s.add(fl0);
+ s.add(new THREE.HemisphereLight(0xffffff,0x8a8f99,1.1));
+ const dl=new THREE.DirectionalLight(0xffffff,2.2);dl.position.set(NOTOP?12:(open?-30:30),NOTOP?110:70,NOTOP?25:(open?-25:45));dl.castShadow=true;dl.shadow.mapSize.set(2048,2048);Object.assign(dl.shadow.camera,{left:-60,right:60,top:60,bottom:-60});s.add(dl);
+ const d2=new THREE.DirectionalLight(0xffffff,0.8);d2.position.set(open?40:-40,20,open?-60:30);s.add(d2);
+ return s;}
+let NOTOP=false;
+function render(id,open,cam,up){const el=document.getElementById(id);const rd=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
+ rd.setSize(800,880);rd.shadowMap.enabled=true;rd.shadowMap.type=THREE.PCFSoftShadowMap;rd.outputColorSpace=THREE.SRGBColorSpace;rd.toneMapping=THREE.ACESFilmicToneMapping;el.appendChild(rd.domElement);
+ const c=new THREE.PerspectiveCamera(30,800/880,1,500);c.position.set(...cam);if(up)c.up.set(...up);c.lookAt(0,up?8:-1,0);rd.render(scene(open),c);}
+NOTOP=false;render('a',false,[72,50,125]);NOTOP=true;render('b',false,[0,115,0.01],[0,0,-1]);window.done=true;
+</script></body></html>

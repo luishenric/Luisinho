@@ -106,3 +106,20 @@
 - Os JBL ficam na frente. Atrás deles, a fonte fica deitada no fundo e, por cima dela, o amplificador (à esquerda) e a bateria 3S8P (à direita).
 - O processador fica sobre a bateria. A placa do módulo BT/USB fica presa por baixo da tampa.
 - Os barramentos ficam na lateral esquerda e o fusível com a chave fica atrás, à direita.
+
+## Versão mais funda (contra interferência) — atual
+![Caixa mais funda](projeto-compacto-funda.png)
+
+- **Medida externa:** 320 × 411 × 360 mm (L × A × P), ≈ 47 L. A caixa fica mais baixa e mais funda.
+- **Câmara do sub:** interno 290 × 206 × 330 mm (≈ 19,7 L bruto, ≈ 15,8 L líquidos). A sintonia (~37 Hz) e o duto de ≈ 48 cm continuam iguais, com o "U" mais achatado.
+- **Parte de cima:** interno 290 × 160 × 330 mm, dividida em zonas (sem divisória física):
+  - **Zona de sinal (frente, ~14 cm):** JBL, processador e módulo BT/USB, por baixo da tampa.
+  - **Zona de potência (fundo, ~16 cm):** fonte em pé encostada na traseira, bateria na lateral, barramentos e fusível.
+  - **Meio:** o amplificador, entre as duas zonas.
+  - O módulo e o processador ficam a ≈ 20 cm da fonte.
+- **Contra ruído e chiado:**
+  - Ponto de terra único no barramento − (aterramento em estrela).
+  - Cabos de áudio (RCA) longe dos cabos de força; quando precisarem se cruzar, cruzar em 90°.
+  - Cabos de força trançados (+ e − juntos).
+  - Ferrite e filtro LC na alimentação do módulo e do processador. Se ainda chiar, usar isolador de terra (ground loop isolator) no áudio do módulo.
+  - Antena do Bluetooth longe de metal e da fonte.
