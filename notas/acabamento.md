@@ -26,3 +26,18 @@
 - Alça embutida de metal (já prevista no topo).
 - Painel traseiro com tomada IEC, chave, voltímetro e grelha de ventilação.
 - Logo da marca: adesivo recortado ou gravação a laser numa placa de acrílico.
+
+## Teste de detalhes com tupia
+![Opções de tupia](acabamento-tupia-opcoes.png)
+
+## ✅ Versão escolhida: C + aros laranja
+![Versão escolhida](acabamento-escolhido.png)
+
+- **Pintura:** preto texturizado (tipo Tufftex ou epóxi texturizado) na caixa toda.
+- **Quinas:** boleadas com fresa de raio 10 mm. Os furos dos alto-falantes também levam a borda boleada.
+- **Alto-falantes embutidos:** rebaixo de ≈ 6 mm, do tamanho da moldura, feito com a tupia e um compasso ou gabarito circular. Rebaixo para o sub com ≈ Ø 211 mm; para os JBL, medir a moldura (≈ Ø 141 mm).
+- **Frisos de 3 mm** (fresa reta ou em V, ≈ 2 mm de profundidade), pintados de laranja:
+  - na frente, uma moldura a 22 mm da borda;
+  - em cada lateral, 1 friso em cima e 2 embaixo.
+- **Aros laranja** em volta dos 3 alto-falantes (anel pintado de ≈ 4 mm na borda do rebaixo), e um aro laranja na saída do duto atrás.
+- **Ordem:** cortar e colar → tupia (quinas, rebaixos, frisos) → selar bordas → primer → texturizado preto → pintar frisos e aros de laranja com pincel fino, fita crepe ou vinil laranja → montar.
