@@ -90,3 +90,12 @@
   - Câmara do sub: interno 290 × 272 × 250 mm, ≈ 15,8 L líquidos, com duto de ≈ 48 cm.
   - Câmara dos JBL: na frente de cima, 290 × 160 × 110 mm (≈ 4,5 L líquidos).
   - Compartimento técnico: atrás dela, 290 × 160 × 125 mm, com a fonte deitada embaixo e, por cima, o amplificador e a bateria 3S8P; o processador fica sobre a bateria.
+
+## Decisão: médios e eletrônica juntos em cima (sem divisória)
+- A parte de cima (interno 290 × 160 × 250 mm, ≈ 11,6 L) é um espaço único: os JBL na frente e a eletrônica atrás. Os equipamentos ocupam ≈ 3,5 L e sobram ≈ 8 L de ar para os médios, o que é suficiente.
+- **A divisória horizontal entre a parte de cima e o sub continua obrigatória e vedada**, com cola e silicone e passagem de cabos com prensa-cabo ou silicone, para não estragar a sintonia.
+- **Calor:** a fonte e o amplificador precisam de ventilação.
+  - Grelha na tampa traseira e uma ventoinha de 12 V puxando ar para fora.
+  - Com o passa-altas de 100–120 Hz, a parte de cima ventilada não prejudica os JBL, que são triaxiais automotivos feitos para porta de carro.
+- **Bateria:** longe da saída de ar quente da fonte e do amplificador (Li-ion não gosta de calor acima de ~45 °C).
+- Tudo preso com parafuso e coxim de borracha (vibração do sub). Não cobrir a ventilação com espuma acústica; a espuma vai só atrás dos JBL.

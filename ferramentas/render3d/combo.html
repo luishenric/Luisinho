@@ -6,10 +6,10 @@ body{margin:0;width:1600px;height:1100px;background:linear-gradient(#f3f4f6,#dfe
 .l{position:absolute;top:975px;width:800px;text-align:center;font-size:22px;font-weight:bold;color:#1f2933}
 #f{position:absolute;bottom:22px;width:100%;text-align:center;font-size:18px;color:#52606d}
 </style></head><body>
-<div id="t">Caixa compacta com compartimento técnico</div>
-<div id="s">320 × 477 × 280 mm (L × A × P) · sub ≈ 15,8 L, sintonia ≈ 37 Hz · 2× JBL 5TRMS80 numa câmara fechada de ≈ 4,5 L</div>
+<div id="t">Caixa compacta – médios e eletrônica juntos em cima</div>
+<div id="s">320 × 477 × 280 mm (L × A × P) · sub ≈ 15,8 L, sintonia ≈ 37 Hz · em cima: JBL + eletrônica no mesmo espaço (sem divisória)</div>
 <div class="c" id="a" style="left:0"></div><div class="c" id="b" style="left:800px"></div>
-<div class="l" style="left:0">Frente</div><div class="l" style="left:800px">Traseira aberta – compartimento técnico e duto</div>
+<div class="l" style="left:0">Frente</div><div class="l" style="left:800px">Traseira aberta – parte de cima única, sub isolado embaixo</div>
 <div id="f"><span style='color:#c8742c'>■</span> bateria Li-ion 3S8P &nbsp; <span style='color:#9aa3ad'>■</span> fonte chaveada 12 V 60 A &nbsp; <span style='color:#222'>■</span> SounDigital SD800.4 EVO 6 &nbsp; <span style='color:#2e7d32'>■</span> processador &nbsp; <span style='color:#d32f2f'>■</span>/<span style='color:#222'>■</span> barramentos + / −</div>
 <script src="node_modules/three/build/three.min.js"></script>
 <script>
@@ -30,7 +30,6 @@ function scene(open){
  panel(W,T,D-T,0,-H/2+T/2,-T/2);panel(W,T,D-T,0,H/2-T/2,-T/2);
  panel(T,H-2*T,D-T,-W/2+T/2,0,-T/2);panel(T,H-2*T,D-T,W/2-T/2,0,-T/2);
  panel(W-2*T,T,D-2*T,0,divY,0); // divisória horizontal
- panel(W-2*T,upH,T,0,jY,bayZ1+T/2); // parede entre câmara dos JBL e compartimento técnico
  if(!open){const bk=rectShape();const p=new THREE.Path();p.absarc(X0(24.5),Y0(4.5),3.75,0,Math.PI*2,true);bk.holes.push(p);
   const b=new THREE.Mesh(new THREE.ExtrudeGeometry(bk,{depth:T,bevelEnabled:false}),mdf);b.position.z=-D/2;g.add(b);}
  const black=new THREE.MeshStandardMaterial({color:0x1c1c1c,roughness:0.6,metalness:0.2});
