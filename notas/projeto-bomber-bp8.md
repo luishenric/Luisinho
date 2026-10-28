@@ -76,3 +76,12 @@ Simulação feita com `ferramentas/sim_compacta.py`, ao ar livre a 1 m. Potênci
 ![Caixa 3D](projeto-bp8-caixa-3d.png)
 
 Gerada por `ferramentas/render3d/`.
+
+## Versão vertical (atual)
+- **Medida externa:** 250 × 350 × 260 mm (L × A × P), em MDF de 15 mm.
+- **Medida interna:** 220 × 320 × 230 mm, ou seja, 16,2 L bruto e cerca de 12 L líquidos. É o mesmo volume da versão deitada, então a sintonia e o grave não mudam.
+- **Alto-falante:** um pouco acima do centro (centro a 45 mm acima do meio).
+- **Duto:** tubo PVC de 75 mm em "U" invertido, no plano a 45 mm da tampa traseira, com cerca de 56 cm pela linha central.
+  - Sai pela traseira, no canto de baixo.
+  - Sobe pela lateral, atravessa por cima e desce do outro lado até cerca de 13,5 cm do fundo.
+- A imagem 3D (`projeto-bp8-caixa-3d.png`) mostra esta versão.
