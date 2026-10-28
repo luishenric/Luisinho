@@ -61,3 +61,13 @@ Simulação feita com `ferramentas/sim_compacta.py`, ao ar livre a 1 m. Potênci
 - **Abaixo de 10 L sem DSP**, não dá para ter F3 de 35 Hz ao ar livre com este alto-falante.
 - **No carro**, o ganho de cabine compensa: a dutada de 10 L (F3 42 Hz ao ar livre) deve chegar perto de 35 Hz dentro do veículo.
 - **Para produto doméstico ou portátil pequeno**, o caminho é a selada com DSP. É menor e mais grave, mas toca mais baixo (cerca de 5 dB a menos).
+
+## Desenho do protótipo (dutada compacta)
+![Caixa dutada compacta](projeto-bp8-caixa.png)
+
+- **Medida externa:** 350 × 250 × 260 mm.
+- **Medida interna:** 320 × 220 × 230 mm (16,2 L bruto, cerca de 12 L líquidos).
+- **Sintonia:** cerca de 40 Hz. F3 de cerca de 38 Hz ao ar livre, perto de 35 Hz no carro.
+- **Duto:** tubo PVC de 75 mm, com cerca de 56 cm pela linha central e 3 curvas de 90°. Fica no plano a 45 mm da tampa traseira (cerca de 16 mm de folga para o ímã) e sai pela traseira.
+- A profundidade foi aumentada de 240 para 260 mm para o duto não encostar no ímã.
+- Desenho gerado por `ferramentas/desenho_caixa.py`.
