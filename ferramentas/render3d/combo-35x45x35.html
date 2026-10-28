@@ -62,11 +62,11 @@ function scene(open){
    const m=new THREE.Mesh(new THREE.LatheGeometry(p,seg),mat);m.rotation.x=Math.PI/2;return m;};
  // ===== sub Bomber Bicho Papão 8" =====
  const spk=new THREE.Group();spk.position.y=subY;g.add(spk);
- { const a=10.35,c=1.8;const fs=new THREE.Shape();fs.moveTo(-a+c,-a);fs.lineTo(a-c,-a);fs.quadraticCurveTo(a,-a,a,-a+c);fs.lineTo(a,a-c);fs.quadraticCurveTo(a,a,a-c,a);fs.lineTo(-a+c,a);fs.quadraticCurveTo(-a,a,-a,a-c);fs.lineTo(-a,-a+c);fs.quadraticCurveTo(-a,-a,-a+c,-a);
+ { const fs=new THREE.Shape();fs.absarc(0,0,10.35,0,Math.PI*2,false);
    const fh=new THREE.Path();fh.absarc(0,0,9.35,0,Math.PI*2,true);fs.holes.push(fh);
-   const fr=new THREE.Mesh(new THREE.ExtrudeGeometry(fs,{depth:0.55,bevelEnabled:true,bevelSize:0.18,bevelThickness:0.18,bevelSegments:3}),gunM);fr.position.z=zf;fr.castShadow=true;spk.add(fr);
+   const fr=new THREE.Mesh(new THREE.ExtrudeGeometry(fs,{depth:0.55,bevelEnabled:true,bevelSize:0.18,bevelThickness:0.18,bevelSegments:3,curveSegments:128}),gunM);fr.position.z=zf;fr.castShadow=true;spk.add(fr);
    const lip=new THREE.Mesh(new THREE.TorusGeometry(9.45,0.28,16,128),gunM);lip.position.z=zf+0.75;spk.add(lip);
-   for(const[x,y]of[[-8.9,-8.9],[8.9,-8.9],[-8.9,8.9],[8.9,8.9],[0,-9.9],[0,9.9],[-9.9,0],[9.9,0]])screw(spk,x,y,zf+0.85);
+   for(let k=0;k<8;k++){const an=(k+0.5)*Math.PI/4;screw(spk,9.9*Math.cos(an),9.9*Math.sin(an),zf+0.85,0.32);}
    const sur=new THREE.Mesh(new THREE.TorusGeometry(8.3,1.0,40,160,Math.PI*2),rubM);sur.scale.z=1.15;sur.position.z=zf+0.15;spk.add(sur);
    const cn=lathe(3.4,7.35,3.6,0.75,subCone,160);cn.position.z=zf+0.15;spk.add(cn);
    const capR=4.6,capA=0.62;const cap=new THREE.Mesh(new THREE.SphereGeometry(capR,64,32,0,Math.PI*2,0,capA),new THREE.MeshPhysicalMaterial({color:0x111113,roughness:0.25,clearcoat:1,clearcoatRoughness:0.15}));
