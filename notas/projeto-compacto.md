@@ -75,3 +75,18 @@
 - Capacidade nominal: 14 Ah (7P) ou 16 Ah (8P), ≈ 155–180 Wh. Em células genéricas a real costuma ser menor.
 - Tamanho do 3S8P deitado: ≈ 15 × 6 × 7 cm, ≈ 1,1 kg.
 - Obrigatório: testar capacidade e resistência interna de cada célula, montar grupos paralelos equilibrados, BMS 3S ≥ 100 A com balanceamento, e ligações série dimensionadas para 60–80 A.
+
+## Revisão com componentes reais
+- **JBL Multisystem 5TRMS80** (triaxial): 80 W RMS, 4 Ω, Fs 91 Hz, 87 dB, resposta de 76 Hz a 20 kHz.
+  - O anúncio diz "largura 6,8"" — **medir**: se forem 17 cm, os dois não cabem lado a lado em 32 cm. O projeto supõe cerca de 13,5 cm.
+- **SounDigital SD800.4 EVO 6:** 4 canais, 800 W RMS a 4 Ω (≈ 200 W por canal), alimentação de 9–16 V, 11,2 × 10,7 × 5,2 cm, com filtros passa-altas e passa-baixas.
+  - Canal 1: sub BP 8" (4 Ω). ~200 W combina com o limite de excursão, e não precisa ligar em ponte.
+  - Canais 2 e 3: os JBL, com passa-altas em 100–120 Hz e ganho moderado (80 W RMS cada).
+  - Canal 4: livre.
+  - Com o pack 3S (9–12,6 V) a potência fica abaixo da nominal, mas suficiente.
+  - **BMS cortando em 3,1–3,2 V por célula** (9,3–9,6 V), para o amplificador não desligar no pico, já que o mínimo dele é 9 V.
+  - **O subsônico (~28 Hz) deve ficar no processador.** O anúncio do amplificador não cita subsônico.
+- **Caixa revista:** 320 × 477 × 280 mm (L × A × P), ≈ 43 L.
+  - Câmara do sub: interno 290 × 272 × 250 mm, ≈ 15,8 L líquidos, com duto de ≈ 48 cm.
+  - Câmara dos JBL: na frente de cima, 290 × 160 × 110 mm (≈ 4,5 L líquidos).
+  - Compartimento técnico: atrás dela, 290 × 160 × 125 mm, com a fonte deitada embaixo e, por cima, o amplificador e a bateria 3S8P; o processador fica sobre a bateria.

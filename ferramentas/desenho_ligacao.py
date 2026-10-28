@@ -20,12 +20,12 @@ tx(W/2,82,"Positivo (+) em vermelho · negativo (−) em preto · fusíveis em a
 R,K="#d32f2f","#222"
 # blocos
 box(60,170,200,90,"Tomada","127/220 V","#e3f2fd")
-box(340,150,260,130,"Fonte chaveada","12 V · 60 A · saída 14,2–14,4 V","#cfd8dc")
-box(340,560,260,130,"Bateria LiFePO4","12 V 20 Ah · BMS ≥ 100 A","#ffcc80")
+box(340,150,260,130,"Fonte chaveada","12 V · 60 A · ajustada em ≈ 12,4 V","#cfd8dc")
+box(340,560,260,130,"Bateria Li-ion 3S8P","11,1 V ≈ 16 Ah · BMS 3S ≥ 100 A","#ffcc80")
 box(1180,140,300,100,"Amplificador 800 W","","#424242")
 box(1180,340,300,80,"Processador (DSP)","12 V","#a5d6a7")
 box(1180,510,300,80,"Módulo Bluetooth/USB","12 V","#b3e5fc")
-a('<rect x="1180" y="140" width="300" height="100" rx="12" fill="#424242"/>');tx(1330,185,"Amplificador 800 W",20,"#fff",wt="bold");tx(1330,211,"+12 V / GND · REM do módulo",15,"#ddd")
+a('<rect x="1180" y="140" width="300" height="100" rx="12" fill="#424242"/>');tx(1330,185,"SounDigital SD800.4",20,"#fff",wt="bold");tx(1330,211,"4 canais · 9–16 V · REM do módulo",15,"#ddd")
 # barramentos
 a('<rect x="820" y="150" width="34" height="470" rx="6" fill="#e57373" stroke="#333" stroke-width="2"/>');tx(837,140,"Barramento +",16,R,wt="bold")
 a('<rect x="1530" y="150" width="34" height="470" rx="6" fill="#616161" stroke="#333" stroke-width="2"/>');tx(1564,140,"Barramento −",16,K,"end","bold")
@@ -51,7 +51,7 @@ box(1180,640,300,80,"Sub BP 8\" + 2× JBL 5\"","nas saídas do amplificador","#e
 y0=815
 notas=["Com tomada: a fonte alimenta o som e carrega a bateria; nas pancadas a bateria ajuda a fonte.",
 "Sem tomada: a bateria alimenta tudo pelo mesmo barramento.",
-"A fonte precisa ter LIMITE DE CORRENTE ou função carregador (para não jogar 60 A numa bateria vazia).",
+"A fonte precisa ter LIMITE DE CORRENTE ou função carregador (para não jogar 60 A numa bateria vazia). Nunca acima de 12,6 V.",
 "* Fusível do amplificador: usar o valor indicado no manual dele.",
 "Cabos principais curtos e grossos (16–25 mm²); fusível da bateria a no máx. 20 cm do polo +."]
 for i,n in enumerate(notas): tx(60,y0+i*36,"• "+n,18,"#222","start")

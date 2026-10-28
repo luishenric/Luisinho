@@ -7,14 +7,14 @@ body{margin:0;width:1600px;height:1100px;background:linear-gradient(#f3f4f6,#dfe
 #f{position:absolute;bottom:22px;width:100%;text-align:center;font-size:18px;color:#52606d}
 </style></head><body>
 <div id="t">Caixa compacta com compartimento técnico</div>
-<div id="s">320 × 480 × 340 mm (L × A × P) · sub ≈ 15,8 L, sintonia ≈ 37 Hz · JBL juntos numa câmara fechada de ≈ 6 L</div>
+<div id="s">320 × 477 × 280 mm (L × A × P) · sub ≈ 15,8 L, sintonia ≈ 37 Hz · 2× JBL 5TRMS80 numa câmara fechada de ≈ 4,5 L</div>
 <div class="c" id="a" style="left:0"></div><div class="c" id="b" style="left:800px"></div>
 <div class="l" style="left:0">Frente</div><div class="l" style="left:800px">Traseira aberta – compartimento técnico e duto</div>
-<div id="f"><span style='color:#c8742c'>■</span> bateria LiFePO4 12 V 20 Ah &nbsp; <span style='color:#9aa3ad'>■</span> fonte chaveada 60 A &nbsp; <span style='color:#222'>■</span> amplificador 800 W &nbsp; <span style='color:#2e7d32'>■</span> processador &nbsp; <span style='color:#d32f2f'>■</span>/<span style='color:#222'>■</span> barramentos + / −</div>
+<div id="f"><span style='color:#c8742c'>■</span> bateria Li-ion 3S8P &nbsp; <span style='color:#9aa3ad'>■</span> fonte chaveada 12 V 60 A &nbsp; <span style='color:#222'>■</span> SounDigital SD800.4 EVO 6 &nbsp; <span style='color:#2e7d32'>■</span> processador &nbsp; <span style='color:#d32f2f'>■</span>/<span style='color:#222'>■</span> barramentos + / −</div>
 <script src="node_modules/three/build/three.min.js"></script>
 <script>
-const W=32,H=48,D=34,T=1.5;
-const subH=22, subY=-H/2+T+11, divY=-H/2+T+subH+T/2, upH=H-3*T-subH, jY=divY+T/2+upH/2, jX=7.5, bayZ0=-D/2+T, bayZ1=D/2-T-11-T;
+const W=32,H=47.7,D=28,T=1.5;
+const subH=27.2, subY=-H/2+T+13.6, divY=-H/2+T+subH+T/2, upH=H-3*T-subH, jY=divY+T/2+upH/2, jX=7.5, bayZ0=-D/2+T, bayZ1=D/2-T-11-T;
 const X0=xr=>(W/2-T)-xr, Y0=yr=>(-H/2+T)+yr;
 function mdfTex(){const c=document.createElement('canvas');c.width=c.height=512;const g=c.getContext('2d');
  g.fillStyle='#8fa486';g.fillRect(0,0,512,512);
@@ -67,16 +67,15 @@ function scene(open){
  // compartimento técnico
  const box=(w,h,d,x,y,z,col,met=0.2)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color:col,roughness:0.5,metalness:met}));m.position.set(x,y,z);m.castShadow=m.receiveShadow=true;g.add(m);return m;};
  const by=divY+T/2;
- box(8,17,18,-10.5,by+8.5,bayZ0+9,0xc8742c);               // bateria em pé, de lado
- box(6,1,10,-10.5,by+17.5,bayZ0+9,0x333333);                // terminais
- box(20,5,11,4,by+2.5,bayZ0+5.5,0x9aa3ad,0.7);             // fonte chaveada deitada
- for(let i=0;i<9;i++)box(0.25,0.2,9,-4+i*2,by+5.05,bayZ0+5.5,0x5f6770,0.6);
- box(9,3,7,1,by+6.5,bayZ0+4.5,0x2e7d32);                   // processador
- box(21,14,5,4,by+14,bayZ1-2.5,0x1e1e1e,0.4);              // amplificador na parede
- for(let i=0;i<8;i++)box(21,0.5,1.2,4,by+8+i*1.7,bayZ1-5.6,0x2b2b2b,0.6);
- box(1.2,1.2,9,13.6,by+15,bayZ0+5,0xd32f2f,0.5);           // barramento +
- box(1.2,1.2,9,13.6,by+12,bayZ0+5,0x222222,0.5);           // barramento -
- box(3,4,1.5,-10.5,by+20,bayZ0+1,0x1565c0);                 // fusível/chave geral
+ box(21.5,5,11.5,0,by+2.5,bayZ0+6.2,0x9aa3ad,0.7);         // fonte chaveada deitada
+ for(let i=0;i<10;i++)box(0.25,0.2,9.5,-9+i*2,by+5.05,bayZ0+6.2,0x5f6770,0.6);
+ box(11.2,5.2,10.7,-7.6,by+5+2.6,bayZ0+6,0x3a3d42,0.5);     // amplificador SD800.4
+ for(let i=0;i<6;i++)box(10.6,0.8,0.35,-7.6,by+10.6,bayZ0+1.6+i*1.75,0x2a2c30,0.6);
+ box(15,6.5,6,6.4,by+5+3.25,bayZ0+3.6,0xc8742c);            // bateria 3S8P
+ box(9,2.4,6,6.4,by+11.5+1.2,bayZ0+3.6,0x2e7d32);           // processador
+ box(1.2,1.2,8,-13.6,by+14,bayZ0+5,0xd32f2f,0.5);           // barramento +
+ box(1.2,1.2,8,-13.6,by+12,bayZ0+5,0x222222,0.5);           // barramento -
+ box(3,3.5,1.5,11,by+13.5,bayZ0+1,0x1565c0);                // fusível/chave geral
  // topo: alça e módulo
  const hd=new THREE.Mesh(new THREE.BoxGeometry(12,0.6,7),metal);hd.position.set(0,H/2+0.1,-2);g.add(hd);
  const hd2=new THREE.Mesh(new THREE.BoxGeometry(9,0.3,3.5),black);hd2.position.set(0,H/2+0.45,-2);g.add(hd2);
@@ -86,7 +85,7 @@ function scene(open){
  const pvc=new THREE.MeshStandardMaterial({color:0x3d8bd4,roughness:0.45,side:THREE.DoubleSide});
  const zp=-D/2+T+4.5,R=4.2,P=(x,y,z)=>new THREE.Vector3(x,y,z),path=new THREE.CurvePath();
  const seg=(a,b)=>path.add(new THREE.LineCurve3(a,b)),bend=(a,c,b)=>path.add(new THREE.QuadraticBezierCurve3(a,c,b));
- const ex=X0(24.5),ey=Y0(4.5),lx=X0(4.5),ty=Y0(17.5),endx=X0(13.5),sg=Math.sign(lx-ex);
+ const ex=X0(24.5),ey=Y0(4.5),lx=X0(4.5),ty=Y0(22.7),endx=X0(8.3),sg=Math.sign(lx-ex);
  seg(P(ex,ey,-D/2),P(ex,ey,zp-R));bend(P(ex,ey,zp-R),P(ex,ey,zp),P(ex+sg*R,ey,zp));
  seg(P(ex+sg*R,ey,zp),P(lx-sg*R,ey,zp));bend(P(lx-sg*R,ey,zp),P(lx,ey,zp),P(lx,ey+R,zp));
  seg(P(lx,ey+R,zp),P(lx,ty-R,zp));bend(P(lx,ty-R,zp),P(lx,ty,zp),P(lx-sg*R,ty,zp));
@@ -104,5 +103,5 @@ function scene(open){
 function render(id,open,cam){const el=document.getElementById(id);const rd=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
  rd.setSize(800,880);rd.shadowMap.enabled=true;rd.shadowMap.type=THREE.PCFSoftShadowMap;rd.outputColorSpace=THREE.SRGBColorSpace;rd.toneMapping=THREE.ACESFilmicToneMapping;el.appendChild(rd.domElement);
  const c=new THREE.PerspectiveCamera(30,800/880,1,500);c.position.set(...cam);c.lookAt(0,0,0);rd.render(scene(open),c);}
-render('a',false,[60,40,110]);render('b',true,[-60,42,-110]);window.done=true;
+render('a',false,[58,40,104]);render('b',true,[-58,44,-100]);window.done=true;
 </script></body></html>
